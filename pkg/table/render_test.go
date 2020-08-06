@@ -212,7 +212,9 @@ func TestTable_Render_AutoMerge_Complex(t *testing.T) {
 │   │                              │           ├─────┴─────┼─────┤
 │   │                              │           │     5     │     │
 └───┴──────────────────────────────┴───────────┴───────────┴─────┘`
+
 	real := tw.Render()
+	fmt.Println(real)
 	assert.Equal(t, expectedOut[1:], real)
 }
 
@@ -369,42 +371,46 @@ func TestTable_Render_BorderAndSeparators(t *testing.T) {
 
 	table.Style().Options = OptionsNoBorders
 	expectedOut = `
-   # | FIRST NAME | LAST NAME | SALARY |
+   # | FIRST NAME | LAST NAME | SALARY |                             
 -----+------------+-----------+--------+-----------------------------
-   1 | Arya       | Stark     |   3000 |
-  20 | Jon        | Snow      |   2000 | You know nothing, Jon Snow!
- 300 | Tyrion     | Lannister |   5000 |
+   1 | Arya       | Stark     |   3000 |                             
+  20 | Jon        | Snow      |   2000 | You know nothing, Jon Snow! 
+ 300 | Tyrion     | Lannister |   5000 |                             
 -----+------------+-----------+--------+-----------------------------
      |            | TOTAL     |  10000 |                             `
-	assert.Equal(t, expectedOut[1:], table.Render())
+	real := table.Render()
+	fmt.Println(real)
+	assert.Equal(t, expectedOut[1:], real)
 
 	table.Style().Options.SeparateColumns = false
 	expectedOut = `
-   #  FIRST NAME  LAST NAME  SALARY
+   #  FIRST NAME  LAST NAME  SALARY                              
 -----------------------------------------------------------------
-   1  Arya        Stark        3000
-  20  Jon         Snow         2000  You know nothing, Jon Snow!
- 300  Tyrion      Lannister    5000
+   1  Arya        Stark        3000                              
+  20  Jon         Snow         2000  You know nothing, Jon Snow! 
+ 300  Tyrion      Lannister    5000                              
 -----------------------------------------------------------------
                   TOTAL       10000                              `
 	assert.Equal(t, expectedOut[1:], table.Render())
 
 	table.Style().Options.SeparateFooter = false
-	expectedOut = `   #  FIRST NAME  LAST NAME  SALARY
+	expectedOut = `
+   #  FIRST NAME  LAST NAME  SALARY                              
 -----------------------------------------------------------------
-   1  Arya        Stark        3000
-  20  Jon         Snow         2000  You know nothing, Jon Snow!
- 300  Tyrion      Lannister    5000
+   1  Arya        Stark        3000                              
+  20  Jon         Snow         2000  You know nothing, Jon Snow! 
+ 300  Tyrion      Lannister    5000                              
                   TOTAL       10000                              `
-	assert.Equal(t, expectedOut, table.Render())
+	assert.Equal(t, expectedOut[1:], table.Render())
 
 	table.Style().Options = OptionsNoBordersAndSeparators
-	expectedOut = `   #  FIRST NAME  LAST NAME  SALARY
-   1  Arya        Stark        3000
-  20  Jon         Snow         2000  You know nothing, Jon Snow!
- 300  Tyrion      Lannister    5000
+	expectedOut = `
+   #  FIRST NAME  LAST NAME  SALARY                              
+   1  Arya        Stark        3000                              
+  20  Jon         Snow         2000  You know nothing, Jon Snow! 
+ 300  Tyrion      Lannister    5000                              
                   TOTAL       10000                              `
-	assert.Equal(t, expectedOut, table.Render())
+	assert.Equal(t, expectedOut[1:], table.Render())
 
 	table.Style().Options.DrawBorder = true
 	expectedOut = `+-----------------------------------------------------------------+
@@ -1211,7 +1217,9 @@ func TestTable_Render_TableWithinTable(t *testing.T) {
 ║ │     │            │ TOTAL     │  10000 │                             │ ║
 ║ └─────┴────────────┴───────────┴────────┴─────────────────────────────┘ ║
 ╚═════════════════════════════════════════════════════════════════════════╝`
-	assert.Equal(t, expectedOut[1:], twOuter.Render())
+	real := twOuter.Render()
+	fmt.Println(real)
+	assert.Equal(t, expectedOut[1:], real)
 }
 
 func TestTable_Render_TableWithTransformers(t *testing.T) {

@@ -28,6 +28,8 @@ func ExampleTablePrinter() {
 }
 ```
 
+Output:
+
 ```
 ┌───┬────────┬───────────┬────────┬─────────────────────────────┐
 │ # │ FIRST  │ LAST NAME │ SALARY │ WORDS                       │
@@ -36,6 +38,27 @@ func ExampleTablePrinter() {
 │ 2 │ Jon    │ Snow      │   2000 │ You know nothing, Jon Snow! │
 │ 3 │ Tyrion │ Lannister │   5000 │                             │
 └───┴────────┴───────────┴────────┴─────────────────────────────┘
+```
+
+```go
+func ExampleTablePrinter_SingleRowTranspose() {
+	p := &Person{FirstName: "Jon", LastName: "Snow", Salary: 2000, Words: "You know nothing, Jon Snow!"}
+	out := prettytable.TablePrinter{SingleRowTranspose: true}.Print(p)
+	fmt.Println(out)
+}
+```
+
+Output:
+
+```
+┌───┬───────────┬─────────────────────────────┐
+│ # │ KEY       │ VALUE                       │
+├───┼───────────┼─────────────────────────────┤
+│ 1 │ FIRST     │ Jon                         │
+│ 2 │ Last Name │ Snow                        │
+│ 3 │ Salary    │ 2000                        │
+│ 4 │ Words     │ You know nothing, Jon Snow! │
+└───┴───────────┴─────────────────────────────┘
 ```
 
 ## Thanks

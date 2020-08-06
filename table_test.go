@@ -35,6 +35,22 @@ func ExampleTablePrinter() {
 	// └───┴────────┴───────────┴────────┴─────────────────────────────┘
 }
 
+func ExampleTablePrinter_SingleRowTranspose() {
+	p := &Person{FirstName: "Jon", LastName: "Snow", Salary: 2000, Words: "You know nothing, Jon Snow!"}
+	out := prettytable.TablePrinter{SingleRowTranspose: true}.Print(p)
+	fmt.Println(out)
+
+	// Output:
+	// ┌───┬───────────┬─────────────────────────────┐
+	// │ # │ KEY       │ VALUE                       │
+	// ├───┼───────────┼─────────────────────────────┤
+	// │ 1 │ FIRST     │ Jon                         │
+	// │ 2 │ Last Name │ Snow                        │
+	// │ 3 │ Salary    │ 2000                        │
+	// │ 4 │ Words     │ You know nothing, Jon Snow! │
+	// └───┴───────────┴─────────────────────────────┘
+}
+
 func TestPrint(t *testing.T) {
 	a := struct {
 		Name string
